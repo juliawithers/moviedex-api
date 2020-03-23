@@ -68,3 +68,8 @@ app.use((error,req,res,next) => {
     res.status(500).json(response)
 })
 module.exports = app;
+
+const PORT = process.env.PORT || 8000
+app.listen(PORT,()=>{
+    console.log('Server started on PORT 8000')
+})

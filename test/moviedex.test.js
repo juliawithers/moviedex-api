@@ -1,7 +1,7 @@
 require('dotenv').config();
 const expect = require('chai').expect;
 const supertest = require('supertest');
-const app = require('../app')
+const app = require('../server')
 
 
 describe('App.js', ()=>{

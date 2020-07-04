@@ -9,7 +9,7 @@ describe('App.js', ()=>{
     it('should filter by genre', ()=>{
         return supertest(app)
             .get('/movie')
-            .set('Authorization','bearer'+ process.env.API_TOKEN)
+            .set('Authorization','bearer '+ process.env.API_TOKEN)
             .query({genre: 'animation'})
             .expect(200)
             .expect('Content-Type', /json/)
@@ -39,7 +39,7 @@ describe('App.js', ()=>{
     it('should filter by country', ()=>{
         return supertest(app)
             .get('/movie')
-            .set('Authorization','bearer'+ process.env.API_TOKEN)
+            .set('Authorization','bearer '+ process.env.API_TOKEN)
             .query({country: 'italy'})
             .expect(200)
             .expect('Content-Type', /json/)
@@ -54,7 +54,7 @@ describe('App.js', ()=>{
                     const movieAtI = res.body[i];
                     const movieAtIPlus1 = res.body[i + 1];
                     // if the next movie is less than the movie at i,
-                    if (movieAtIPlus1.country < movieAtI.country) {
+                    if (movieAtIPlus1.country != movieAtI.country) {
                         // the movies were not sorted correctly
                         filtered = false;
                         break; // exit the loop
@@ -69,7 +69,7 @@ describe('App.js', ()=>{
     it('should filter by the average vote', ()=>{
         return supertest(app)
             .get('/movie')
-            .set('Authorization','bearer'+ process.env.API_TOKEN)
+            .set('Authorization','bearer '+ process.env.API_TOKEN)
             .query({avg_vote: 9})
             .expect(200)
             .expect('Content-Type', /json/)
@@ -84,7 +84,7 @@ describe('App.js', ()=>{
                     const movieAtI = res.body[i];
                     const movieAtIPlus1 = res.body[i + 1];
                     // if the next movie is less than the movie at i,
-                    if (movieAtIPlus1.country != movieAtI.country) {
+                    if (movieAtIPlus1.avg_vote != movieAtI.avg_vote) {
                         // the movies were not sorted correctly
                         filtered = false;
                         break; // exit the loop
@@ -119,7 +119,7 @@ describe('App.js', ()=>{
     it('provided no params, full movie list is rendered', ()=>{
         return supertest(app)
         .get('/movie')
-        .set('Authorization','bearer'+ process.env.API_TOKEN)
+        .set('Authorization','bearer '+ process.env.API_TOKEN)
         .expect(200)
     })
 })
